@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <pre id="fileContent"></pre>
+  </body>
+</html>
+<script>
+  fetch("input.txt")
+    .then((response) => response.text())
+    .then((data) => {
+      // document.getElementById('fileContent').textContent = data;
+
+      const inputLines = data.split("\n");
+      var validLinesCounter = 0;
+      for (let i = 0; i < inputLines.length; i++) {
+        // Trim whitespace characters from each line
+        var line = inputLines[i].trim().split(" ");
+
+        var isLineValid = isLineSafe(line);
+        if (!isLineValid) {
+          for (let j = 0; j < line.length; j++) {
+            var temp = line[j];
+             line.splice(j, 1);
+            isLineValid = isLineSafe(line);
+            if (isLineValid) {
+              break;
+            }
+            //Add the element back to the array
+            line.splice(j, 0, temp);
+
+          }
+        }
+        if (isLineValid) {
+          validLinesCounter++;
+        }
+
+        console.log(`Line ${i + 1} is ${isLineValid ? "valid" : "invalid"}`);
+      }
+      console.log(validLinesCounter);
+    })
+    .catch((error) => console.error("Error fetching the file:", error));
+
+  function isLineSafe(line) {
+    var isIncreasing = false;
+    var isDecreasing = false;
+
+    for (let j = 1; j < line.length; j++) {
+      var char = parseInt(line[j]);
+      var previousChar = parseInt(line[j - 1]);
+
+      // Check if the numbers in line are in increasing order
+      if (previousChar < char) {
+        isIncreasing = true;
+      }
+      // Check if the numbers in line are in decreasing order
+      else if (previousChar > char) {
+        isDecreasing = true;
+      }
+      // If the numbers are equal, then the line is invalid
+      else {
+        return false;
+      }
+
+      // If both increasing and decreasing conditions are true, then the line is invalid
+      if (isIncreasing && isDecreasing) {
+        return false;
+      }
+
+      var distance = Math.abs(char - previousChar);
+      if (distance > 3) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+</script>
