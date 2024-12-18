@@ -1,35 +1,20 @@
-﻿#include <fstream>
+#include <fstream>
 #include <iostream>
 #include <string>
 #include <vector>
 #include <sstream>
+#include <regex>
+
 
 using namespace std;
 
 string filterLine(const string& line) {
+    regex pattern("(mul([0-9]+,[0-9]+))");
     string result = "";
-    bool spaceNeeded = false;  // To track whether a space is needed
-
-    // Filter line of any other characters than 'mul' and numbers
-    for (int i = 0; i < line.length(); i++) {
-        // If the character is a digit, add it to the result
-        if (line[i] >= '0' && line[i] <= '9') {
-            if (spaceNeeded && !result.empty()) {
-                result += ' ';  // Add a space if needed before the number, but not at the beginning
-                spaceNeeded = false;  // Reset the spaceNeeded flag
-            }
-            result += line[i];  // Add the digit to the result
-        }
-        // If a comma is found after a number, mark that a space is needed
-        else if (line[i] == ',' && i > 0 && line[i - 1] >= '0' && line[i - 1] <= '9') {
-            spaceNeeded = true;
-        }
-        // If we encounter a closing parenthesis, it's a valid separator between numbers
-        else if (line[i] == ')') {
-            spaceNeeded = true;  // Space is needed after a closing parenthesis
-        }
+  
+    for(int i = 0; i < line.length(); i++){
+        
     }
-
     return result;
 }
 
