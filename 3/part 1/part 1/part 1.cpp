@@ -3,34 +3,23 @@
 #include <string>
 #include <vector>
 #include <sstream>
+#include <regex>
 
 using namespace std;
 
-string filterLine(const string& line) {
-    string result = "";
-    bool spaceNeeded = false;  // To track whether a space is needed
+//Find the x and y in "mul(x,y)"
+vector<int> findNumbers(const string& mul) {
+    vector<int> numbers;
+    regex numberPattern("[0-9]+");
+    smatch match;
+    string::const_iterator searchStart(mul.cbegin());
 
-    // Filter line of any other characters than 'mul' and numbers
-    for (int i = 0; i < line.length(); i++) {
-        // If the character is a digit, add it to the result
-        if (line[i] >= '0' && line[i] <= '9') {
-            if (spaceNeeded && !result.empty()) {
-                result += ' ';  // Add a space if needed before the number, but not at the beginning
-                spaceNeeded = false;  // Reset the spaceNeeded flag
-            }
-            result += line[i];  // Add the digit to the result
-        }
-        // If a comma is found after a number, mark that a space is needed
-        else if (line[i] == ',' && i > 0 && line[i - 1] >= '0' && line[i - 1] <= '9') {
-            spaceNeeded = true;
-        }
-        // If we encounter a closing parenthesis, it's a valid separator between numbers
-        else if (line[i] == ')') {
-            spaceNeeded = true;  // Space is needed after a closing parenthesis
-        }
+    while (regex_search(searchStart, mul.cend(), match, numberPattern)) {
+        numbers.push_back(stoi(match.str()));
+        searchStart = match.suffix().first;
     }
 
-    return result;
+    return numbers;
 }
 
 int main() {
@@ -39,28 +28,23 @@ int main() {
         cout << "File not found" << endl;
         return 0;
     }
-
+    stringstream buffer;
+    buffer << file.rdbuf();
+    string fileContents = buffer.str();
+    regex pattern("mul\\([0-9]+,[0-9]+\\)");  // Match mul(x,y) pattern
+    smatch match;
     int result = 0;
-    string line;
 
-    while (getline(file, line)) {
-        line = filterLine(line);  
+    // Find all "mul(x,y)" patterns in the line
+    while (regex_search(fileContents, match, pattern)) {
+        vector<int> numbers = findNumbers(match.str());  // Extract numbers from the matched string
+        
+        //The vector only has 2 numbers anyway so access them directly
+        result += numbers[0] * numbers[1];  
 
-        vector<int> numbers;
-        stringstream ss(line);
-        string temp;
-
-        while (ss >> temp) {
-            numbers.push_back(stoi(temp)); // Convert the string to integer
-        }
-
-        // Multiply numbers in pairs and accumulate the result
-        for (size_t j = 0; j + 1 < numbers.size(); j += 2) {
-            result += numbers[j] * numbers[j + 1]; // Multiply and accumulate
-        }
+        fileContents = match.suffix().str();  // Move to the rest of the line after the current match
     }
 
-    // Output the final result after processing all lines
-    cout << "Total result: " << result << endl;
+    cout << "Result: " << result << endl;  
     return 0;
 }
