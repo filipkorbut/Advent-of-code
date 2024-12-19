@@ -3,11 +3,11 @@
   "WorkspaceRootPath": "C:\\Users\\mcraf\\Documents\\GitHub\\Advent-of-code\\3\\part 2\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{964ADB86-92EB-49A5-B5B6-71E9D6F907AC}|part 2\\part 2.vcxproj|C:\\PROGRAM FILES\\MICROSOFT VISUAL STUDIO\\2022\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.39.33519\\INCLUDE\\VECTOR||{3B902123-F8A7-4915-9F01-361F908088D0}|"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{964ADB86-92EB-49A5-B5B6-71E9D6F907AC}|part 2\\part 2.vcxproj|C:\\Users\\mcraf\\Documents\\GitHub\\Advent-of-code\\3\\part 2\\part 2\\part 2.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{964ADB86-92EB-49A5-B5B6-71E9D6F907AC}|part 2\\part 2.vcxproj|solutionrelative:part 2\\part 2.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.39.33519\\include\\vector||{3B902123-F8A7-4915-9F01-361F908088D0}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -17,11 +17,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "vector",
               "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.39.33519\\include\\vector",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.39.33519\\include\\vector",
@@ -34,13 +34,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "part 2.cpp",
               "DocumentMoniker": "C:\\Users\\mcraf\\Documents\\GitHub\\Advent-of-code\\3\\part 2\\part 2\\part 2.cpp",
               "RelativeDocumentMoniker": "part 2\\part 2.cpp",
               "ToolTip": "C:\\Users\\mcraf\\Documents\\GitHub\\Advent-of-code\\3\\part 2\\part 2\\part 2.cpp",
               "RelativeToolTip": "part 2\\part 2.cpp",
-              "ViewState": "AQIAACgAAAAAAAAAAAAuwEEAAAAAAAAA",
+              "ViewState": "AQIAACkAAAAAAAAAAAAswEsAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-12-19T19:07:17.123Z",
               "EditorCaption": ""
